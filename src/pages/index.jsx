@@ -105,52 +105,65 @@ const Carousel = () => {
         <div className="absolute bottom-0 w-full h-8 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
       </div>
       <div className="bg-black min-h-screen flex flex-col items-center text-white">
-  <Image
-    src="/custom.png"
-    alt="Decorative Upper Image"
-    layout="responsive"
-    width={600}
-    height={400}
-    className="w-full max-w-lg mb-[-70px]"
-  />
+      {/* Decorative Upper Image */}
+      <div className="w-full max-w-lg mb-[-70px]">
+        <Image
+          src="/custom.png"
+          alt="Decorative Upper Image"
+          layout="responsive"
+          width={600}
+          height={400}
+          className="w-full"
+        />
+      </div>
 
-  <div className="flex justify-center items-center p-5 w-full max-w-5xl">
-    <div className="relative w-full lg:w-1/2 h-64">
-      <iframe
-        className="absolute top-0 left-0 w-full h-full rounded-lg"
-        src="https://www.youtube.com/embed/UDllFC9d4Xc?si=VKVQ78YF2pqKVbzW"
-        title="YouTube video player"
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-      ></iframe>
+      {/* Content and Video Section */}
+      <div className="flex flex-col lg:flex-row justify-center items-center p-5 w-full max-w-5xl">
+        {/* Video Embed */}
+        <div className="relative w-full lg:w-1/2 h-48 sm:h-64 lg:h-80">
+          <iframe
+            className="absolute top-0 left-0 w-full h-full rounded-lg"
+            src="https://www.youtube.com/embed/UDllFC9d4Xc?si=VKVQ78YF2pqKVbzW"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        </div>
+
+        {/* Text Section */}
+        <div className="mt-5 lg:mt-0 lg:ml-5 w-full lg:w-1/2 text-center lg:text-left">
+          <h2 className="text-2xl font-bold mb-2">About Hare Krishna Movement</h2>
+          <h3 className="text-xl font-bold mb-2">Jodhpur</h3>
+          <p className="mb-4">
+            The Hare Krishna Cultural Centre, also known as the &quot;Hare Krishna Movement Jodhpur&quot; or the &quot;Hare Krishna Mandir,&quot; desires to advance society through the authentic traditional practices of spiritual culture.
+          </p>
+          <p className="mb-4">
+            Srila Prabhupada, the Founder-Acharya of the International Society for Krishna Consciousness, stated, &quot;Unless you change the society, how can you make social welfare?&quot;
+          </p>
+
+          {/* Link to About Page */}
+         
+        </div>
+        <Link href="/about">
+            
+            <i className="fas fa-arrow-right ml-2"></i>
+      
+        </Link>
+      </div>
+
+      {/* Decorative Lower Image */}
+      <div className="w-full max-w-lg mt-[-70px] transform rotate-180">
+        <Image
+          src="/custom.png"
+          alt="Decorative Lower Image"
+          layout="responsive"
+          width={600}
+          height={400}
+          className="w-full"
+        />
+      </div>
     </div>
-    <div className="ml-5 w-full lg:w-1/2">
-      <h2 className="text-2xl font-bold mb-2">About Hare Krishna Movement</h2>
-      <h3 className="text-xl font-bold mb-2">Jodhpur</h3>
-      <p className="mb-4">
-        The Hare Krishna Cultural Centre, also known as the &quot;Hare Krishna Movement Jodhpur&quot; or the &quot;Hare Krishna Mandir,&quot; desires to advance society through the authentic traditional practices of spiritual culture.
-      </p>
-      <p className="mb-4">
-        Srila Prabhupada, the Founder-Acharya of the International Society for Krishna Consciousness, stated, &quot;Unless you change the society, how can you make social welfare?&quot;
-      </p>
-     
-
-    </div>
-    <Link href="/about" className="font-bold hover:underline">
-    <i className="fas fa-arrow-right ml-2"></i>
-</Link>
-  </div>
-
-  <Image
-    src="/custom.png"
-    alt="Decorative Lower Image"
-    layout="responsive"
-    width={600}
-    height={400}
-    className="w-full max-w-lg transform rotate-180 mt-[-70px]"
-  />
-</div>
 
       
       {/* Donation Section moved above the custom upper image */}

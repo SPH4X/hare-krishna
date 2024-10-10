@@ -2,39 +2,12 @@ import React from "react";
 
 const About = () => {
   return (
-    <div
-      style={{
-        backgroundColor: "#000",
-        color: "#fff",
-        padding: "0", // Removed unnecessary padding
-        minHeight: "100vh", // Ensure the content takes up at least full screen
-      }}
-    >
-      {/* Navigation Bar */}
-
+    <div className="bg-black text-white min-h-screen">
       {/* Main Content */}
-      <div
-        style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          padding: "24px",
-        }}
-      >
-        <div
-          style={{
-            borderRadius: "12px",
-            boxShadow: "0 0 12px rgba(0, 0, 0, 0.2)",
-            padding: "24px",
-            marginBottom: "24px",
-          }}
-        >
+      <div className="max-w-7xl mx-auto p-6 sm:p-8 lg:p-12">
+        <div className="rounded-lg shadow-lg p-6 mb-8">
           <iframe
-            style={{
-              width: "100%",
-              height: "500px",
-              borderRadius: "12px",
-              boxShadow: "0 0 12px rgba(0, 0, 0, 0.2)",
-            }}
+            className="w-full h-64 sm:h-80 lg:h-[500px] rounded-lg shadow-lg"
             src="https://www.youtube.com/embed/UDllFC9d4Xc?si=VKVQ78YF2pqKVbzW"
             title="YouTube video player - Hare Krishna Movement"
             frameBorder="0"
@@ -44,64 +17,29 @@ const About = () => {
           />
         </div>
 
-        <section
-          style={{
-            maxWidth: "800px",
-            margin: "0 auto",
-            padding: "24px",
-          }}
-        >
-          <h1
-            style={{
-              fontSize: "36px",
-              fontWeight: "bold",
-              marginBottom: "12px",
-            }}
-          >
-            Hare Krishna Mandir, Jodhpur
-          </h1>
-          <p
-            style={{
-              fontSize: "18px",
-              fontStyle: "italic",
-              marginBottom: "24px",
-            }}
-          >
+        <section className="max-w-3xl mx-auto p-6 text-center lg:text-left">
+          <h1 className="text-3xl sm:text-4xl font-bold mb-4">Hare Krishna Mandir, Jodhpur</h1>
+          <p className="text-lg italic mb-6">
             &quot;A humble offering to the eternal master, Srila Prabhupada, for the
             benefit of all souls seeking something permanent in this transient
             world.&quot;
           </p>
 
-          <p
-            style={{
-              fontSize: "16px",
-              marginBottom: "24px",
-            }}
-          >
+          <p className="text-base sm:text-lg mb-6">
             The Hare Krishna Mandir is an endeavor to fulfill the mission of our
             beloved spiritual master, His Divine Grace A.C. Bhaktivedanta Swami
             Prabhupada, who is the founder acharya of the worldwide Hare Krishna
             Movement and the link to connect with Lord Sri Krishna.
           </p>
 
-          <p
-            style={{
-              fontSize: "16px",
-              marginBottom: "24px",
-            }}
-          >
+          <p className="text-base sm:text-lg mb-6">
             As the second-largest temple in the state, it is currently being
             constructed in two phases. April 2, 2022, marked the bhumi pujan
             ceremony and the inauguration of the sankirtan hall, alongside the
             deity installation of Sri Sri Gaur Natai.
           </p>
 
-          <p
-            style={{
-              fontSize: "16px",
-              marginBottom: "24px",
-            }}
-          >
+          <p className="text-base sm:text-lg mb-6">
             The temple introduces society to ancient Vedic wisdom through the
             Bhagavad-gita and Srimad-Bhagavatam. It offers devotees the
             opportunity to partake in deity darshan, harinam sankirtan, aarties,
@@ -110,12 +48,7 @@ const About = () => {
             different regions.
           </p>
 
-          <p
-            style={{
-              fontSize: "16px",
-              marginBottom: "24px",
-            }}
-          >
+          <p className="text-base sm:text-lg mb-6">
             With the Hare Krishna Maha Mantra filling the air, devotees
             experience spiritual bliss in the sankirtan hall, leaving with
             memories of deep spiritual connection. This mandir is an offering to
@@ -125,8 +58,6 @@ const About = () => {
           </p>
         </section>
       </div>
-
-      {/* Footer */}
     </div>
   );
 };
