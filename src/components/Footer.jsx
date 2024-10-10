@@ -554,13 +554,6 @@ export default function Footer() {
             >
               Privacy Policy
             </Link>
-            &nbsp;&nbsp;|&nbsp;&nbsp;
-            <Link
-              href="/cancellationPolicy"
-              className="hover:text-white hover:underline"
-            >
-              Cancellation Policy
-            </Link>
           </div>
         </div>
       </footer>
