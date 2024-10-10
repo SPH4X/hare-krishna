@@ -66,8 +66,8 @@ const Navbar = () => {
               </Link>
             </span>
             <span className="text-xs sm:text-sm">
-              <Link href="tel:+919799999881" className="flex items-center">
-                <i className="fas fa-phone"></i> +91-97999 99881
+              <Link href="tel:+919799984010" className="flex items-center">
+                <i className="fas fa-phone"></i> +91-9799984010
               </Link>
             </span>
           </div>

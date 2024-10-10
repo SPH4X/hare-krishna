@@ -440,7 +440,7 @@ export default function Footer() {
                   </Link>
                   <Link
                     target="_blank"
-                    href="mailto:harikirtanadasa@gmail.com"
+                    href="mailto:hkm.jodhpur@harekrishnajaipur.org"
                     className="inline-flex gap-2 items-center hover:underline"
                   >
                     <span className="h-9 w-9 text-white flex items-center justify-center rounded-full bg-primary">
@@ -457,7 +457,7 @@ export default function Footer() {
                       </svg>
                     </span>
                     <span className="hover:underline">
-                      harikirtanadasa@gmail.com
+                    hkm.jodhpur@harekrishnajaipur.org
                     </span>
                   </Link>
                 </div>
@@ -504,7 +504,7 @@ export default function Footer() {
                 </Link>
                 <Link
                   target="_blank"
-                  href="mailto:harikirtanadasa@gmail.com"
+                  href="mailto:hkm.jodhpur@harekrishnajaipur.org"
                   className="inline-flex gap-2 items-center hover:underline"
                 >
                   <span className="h-9 w-9 text-white flex items-center justify-center rounded-full bg-primary">
@@ -521,7 +521,7 @@ export default function Footer() {
                     </svg>
                   </span>
                   <span className="hover:underline">
-                    harikirtanadasa@gmail.com
+                    hkm.jodhpur@harekrishnajaipur.org
                   </span>
                 </Link>
               </div>

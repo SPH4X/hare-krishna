@@ -17,7 +17,7 @@ const About = () => {
           />
         </div>
 
-        <section className="max-w-3xl mx-auto p-6 text-center lg:text-left">
+        <section className="max-w-11xl mx-auto p-6 text-center lg:text-left">
           <h1 className="text-3xl sm:text-4xl font-bold mb-4">Hare Krishna Mandir, Jodhpur</h1>
           <p className="text-lg italic mb-6">
             &quot;A humble offering to the eternal master, Srila Prabhupada, for the
