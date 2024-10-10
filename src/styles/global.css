@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes slow-marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+/* styles/global.css */
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.animate-slow-marquee {
+  animation: slow-marquee 20s linear infinite; /* Adjust '20s' to change the speed */
+}
+/* styles/globals.css */
+/* .container {
+  margin: 40px auto;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+} */
+
+.carousel-slide {
+  transition: transform 1s ease-in-out; /* Smooth transition for slide movement */
+}
