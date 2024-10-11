@@ -88,14 +88,17 @@ const Carousel = () => {
     <>
       {/* Carousel Section */}
       <div
-        className="w-full h-[300px] sm:h-[400px] lg:h-[600px] overflow-hidden relative rounded-2xl cursor-grab" // Increased height
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseUp}
-      >
+  className="w-full h-[300px] sm:h-[400px] lg:h-[600px] overflow-hidden relative rounded-2xl cursor-grab"
+  onMouseEnter={() => setIsHovered(true)}
+  onMouseLeave={() => {
+    setIsHovered(false);
+    handleMouseUp(); // Call handleMouseUp when mouse leaves
+  }}
+  onMouseDown={handleMouseDown}
+  onMouseMove={handleMouseMove}
+  onMouseUp={handleMouseUp}
+>
+
         <div
           className="flex transition-transform duration-1000 ease-in-out"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -106,7 +109,7 @@ const Carousel = () => {
                 src={slide.url}
                 alt={`Slide ${index + 1}`}
                 fill
-                className=" object-cover"
+                className="object-cover"
               />
             </div>
           ))}
@@ -119,7 +122,6 @@ const Carousel = () => {
           <Image
             src="/custom.png"
             alt="Decorative Upper Image"
-            layout="responsive"
             width={600}
             height={400}
             className="w-full"
@@ -157,7 +159,6 @@ const Carousel = () => {
           <Image
             src="/custom.png"
             alt="Decorative Lower Image"
-            layout="responsive"
             width={600}
             height={400}
             className="w-full"
@@ -189,7 +190,7 @@ const Carousel = () => {
                       <Image
                         alt={donation.title}
                         src={donation.src}
-                        layout="fill"
+                        fill
                         className="rounded-t-xl object-cover"
                       />
                     </div>
@@ -209,15 +210,14 @@ const Carousel = () => {
         </div>
       </div>
 
-      {/* Photos Section */}
+      {/* Photo Gallery Section */}
       <div className="bg-black text-white font-roboto py-12 px-12">
         <div className="container mx-auto max-w-6xl">
           <div className="flex justify-center items-center mb-8">
             <div className="text-center">
               <h1 className="text-4xl font-bold text-gray-100">Photos</h1>
               <p className="text-lg text-gray-300">
-                View the highlights of the programs and cultural festivities
-                celebrated by the Hare Krishna Movement Jodhpur.
+                View the highlights of the programs and cultural festivities celebrated by the Hare Krishna Movement Jodhpur.
               </p>
             </div>
           </div>
@@ -236,7 +236,7 @@ const Carousel = () => {
                       <Image
                         alt={photo.title}
                         src={photo.src}
-                        layout="fill"
+                        fill
                         className="rounded-t-xl object-cover"
                       />
                     </div>
