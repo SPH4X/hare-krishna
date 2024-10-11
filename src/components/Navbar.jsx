@@ -1,23 +1,14 @@
-"use client"; // Indicates that this component will use client-side rendering
-import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
-import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation"; // Updated import
+"use client";
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation'; // Import usePathname for active link styling
+import '@fortawesome/fontawesome-free/css/all.min.css'; // Import Font Awesome CSS
+import Image from 'next/image';
 
-const Navbar = () => {
-  const [isMobile, setIsMobile] = useState(false);
+export default function Navbar() {
+  const pathname = usePathname(); // Get the current path
   const [status, setStatus] = useState("Closed");
   const [statusColor, setStatusColor] = useState("bg-red-500");
-  const pathname = usePathname(); // Use pathname to determine the current route
-
-  // Handle window resizing
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 640);
-    handleResize(); // Check on component mount
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   // Update operational status
   useEffect(() => {
@@ -43,180 +34,106 @@ const Navbar = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  // Render component
   return (
     <>
-      <Head>
-        <link
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-          rel="stylesheet"
-        />
-      </Head>
-
-      <div className="bg-[#222] text-white">
-        {/* Top Bar (Hidden on mobile) */}
-        <div className="hidden sm:flex bg-[#233142] flex-col sm:flex-row justify-between items-center px-4 py-2 sm:px-6 sm:py-3 text-xs sm:text-sm">
-          <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6">
-            <span className="text-xs sm:text-sm">
-              <Link
-                href="mailto:hkm.jodhpur@harekrishnajaipur.org"
-                className="flex items-center"
-              >
-                <i className="fas fa-envelope"></i> hkm.jodhpur@harekrishnajaipur.org
-              </Link>
-            </span>
-            <span className="text-xs sm:text-sm">
-              <Link href="tel:+919799984010" className="flex items-center">
-                <i className="fas fa-phone"></i> +91-9799984010
-              </Link>
-            </span>
-          </div>
-
-          <div className="flex items-center space-x-4 sm:space-x-6 mt-2 sm:mt-0">
-            <span
-              className={`text-white font-bold px-3 py-1 rounded-full text-xs sm:text-sm transition duration-300 shadow-md ${statusColor}`}
-            >
-              {status}
-            </span>
-            <div className="flex space-x-4">
-              {[
-                {
-                  platform: "youtube",
-                  url: "https://www.youtube.com/@HareKrishnaJodhpur/",
-                },
-                {
-                  platform: "instagram",
-                  url: "https://instagram.com/harekrishnajodhpur",
-                },
-                {
-                  platform: "facebook",
-                  url: "https://www.facebook.com/hkmjodhpur/",
-                },
-              ].map(({ platform, url }) => (
-                <a
-                  key={platform}
-                  href={url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-blue-300"
-                >
-                  <i className={`fab fa-${platform}`}></i>
-                </a>
-              ))}
-            </div>
-          </div>
+      {/* Upper Nav Bar */}
+      <div className="bg-gradient-to-r from-sky-950 via-gray-800 to-sky-950 text-white py-2 px-4 md:px-10 flex justify-between items-center shadow-lg">
+        <div className="flex items-center space-x-4">
+          <Link href="mailto:hkm.jodhpur@harekrishnajaipur.org" className="flex items-center hover:text-white transition-colors">
+            <i className="fas fa-envelope mr-1 text-lg"></i>
+            <span className="hidden sm:inline">hkm.jodhpur@harekrishnajaipur.org</span>
+          </Link>
+          <Link href="https://wa.me/919799984010" target="_blank" rel="noopener noreferrer" className="flex items-center hover:text-white transition-colors">
+            <i className="fab fa-whatsapp mr-1 text-lg"></i>
+            <span className="hidden sm:inline">+91 979984010</span>
+          </Link>
         </div>
-
-        {/* Mobile Header */}
-        <div className="sticky top-0 z-50 bg-[#222] shadow-md px-4 sm:px-6 py-3 flex justify-between items-center sm:hidden">
-          <div className="flex-shrink-0">
-            <Link href="/">
-              <Image
-                src="/logo.png"
-                alt="Logo of Hare Krishna Movement Jaipur"
-                className="h-10 w-auto"
-                width={300}
-                height={300}
-              />
-            </Link>
-          </div>
-          <button className="bg-sky-950 text-white font-bold px-3 py-1 rounded-full text-xs">
-            Donate now
-          </button>
-        </div>
-
-        {/* Mobile Navigation */}
-        {isMobile && (
-          <nav className="fixed text-9xl bottom-0 left-0 right-0 bg-[#222] shadow-lg z-50 sm:hidden">
-            <div className="flex justify-around items-center py-2">
-              {["/", "/about", "/activities", "/festivals", "/contact"].map(
-                (link, index) => {
-                  const labels = [
-                    "Home",
-                    "About",
-                    "Activities",
-                    "Festivals",
-                    "Contact",
-                  ];
-                  const icons = [
-                    "home",
-                    "info-circle",
-                    "running",
-                    "calendar-alt",
-                    "phone-alt",
-                  ];
-                  return (
-                    <Link
-                      key={link}
-                      href={link}
-                      className={`flex flex-col items-center text-white ${
-                        pathname === link
-                          ? "hover:text-blue-400 font-bold"
-                          : "hover:text-blue-400"
-                      }`}
-                    >
-                      <i className={`fas fa-${icons[index]} text-lg`}></i>
-                      <span className="text-xs">{labels[index]}</span>
-                    </Link>
-                  );
-                }
-              )}
-            </div>
-          </nav>
-        )}
-
-        {/* Desktop Navbar */}
-        <div className="hidden sm:block bg-[#222] shadow-md">
-          <nav className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
-            <div className="flex-shrink-0">
-              <Link href="/">
-                <Image
-                  src="/logo.png"
-                  alt="Logo of Hare Krishna Movement Jodhpur"
-                  className="h-10 w-auto sm:h-12"
-                  width={300}
-                  height={300}
-                />
-              </Link>
-            </div>
-
-            {/* Menu Items */}
-            <div className="flex-1 flex justify-center space-x-6 text-sm">
-              {["/", "/about", "/activities", "/festivals", "/contact"].map(
-                (link, index) => {
-                  const labels = [
-                    "Home",
-                    "About Us",
-                    "Activities",
-                    "Festivals",
-                    "Contact Us",
-                  ];
-                  return (
-                    <Link
-                      key={link}
-                      href={link}
-                      className={`text-white ${
-                        pathname === link ? "font-bold" : "hover:text-blue-400"
-                      }`}
-                    >
-                      {labels[index]}
-                    </Link>
-                  );
-                }
-              )}
-            </div>
-
-            {/* Donate Button */}
-            <div className="flex-shrink-0">
-              <button className="bg-white text-black font-bold px-4 py-2 rounded-full text-sm">
-                Donate now
-              </button>
-            </div>
-          </nav>
+        {/* Status indicator */}
+        <div className={`flex items-center px-3 py-1 rounded-full text-white ${statusColor}`}>
+          {status}
         </div>
       </div>
+
+      {/* Main Sticky Nav Bar */}
+      <div className="bg-gradient-to-r from-black via-gray-900 to-black sticky top-0 z-50 shadow-lg">
+        <div className="container mx-auto flex justify-between items-center py-3 px-4 md:px-10">
+          {/* Logo */}
+          <div className="flex-shrink-0"> {/* Prevents shrinking */}
+            <Image
+              src="/logo.png"
+              alt="Logo of Hare Krishna Movement Jodhpur"
+              className="h-10 w-auto sm:h-12"
+              width={300}
+              height={300}
+            />
+          </div>
+          {/* Navigation Links */}
+          <nav className="hidden md:flex space-x-6">
+            {["/", "/about", "/activities", "/festivals", "/contact"].map((link, index) => {
+              const labels = [
+                "Home",
+                "About",
+                "Activities",
+                "Festivals",
+                "Contact",
+              ];
+              return (
+                <Link
+                  key={link}
+                  href={link}
+                  className={`text-white hover:text-blue-300 transition-colors font-semibold ${
+                    pathname === link ? 'underline' : ''
+                  }`}
+                >
+                  {labels[index]}
+                </Link>
+              );
+            })}
+          </nav>
+          {/* Stylish Donate Button */}
+          <div className="ml-4"> {/* Added margin to the left */}
+            <button className="bg-gradient-to-r from-red-400 to-red-600 text-white font-bold px-6 py-3 rounded-3xl transition-colors hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-300">
+              Donate Now
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Nav Bar for Mobile Screens */}
+      <nav className="fixed text-9xl bottom-0 left-0 right-0 bg-[#222] shadow-lg z-50 sm:hidden">
+        <div className="flex justify-around items-center py-2">
+          {["/", "/about", "/activities", "/festivals", "/contact"].map((link, index) => {
+            const labels = [
+              "Home",
+              "About",
+              "Activities",
+              "Festivals",
+              "Contact",
+            ];
+            const icons = [
+              "home",
+              "info-circle",
+              "running",
+              "calendar-alt",
+              "phone-alt",
+            ];
+            return (
+              <Link
+                key={link}
+                href={link}
+                className={`flex flex-col items-center text-white ${
+                  pathname === link
+                    ? "hover:text-blue-400 font-bold"
+                    : "hover:text-blue-400"
+                }`}
+              >
+                <i className={`fas fa-${icons[index]} text-lg`}></i>
+                <span className="text-xs">{labels[index]}</span>
+              </Link>
+            );
+          })}
+        </div>
+      </nav>
     </>
   );
-};
-
-export default Navbar;
+}

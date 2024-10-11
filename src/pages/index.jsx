@@ -55,31 +55,32 @@ const Carousel = () => {
 
   return (
     <>
-      <div
-        className="w-full h-[400px] sm:h-[600px] lg:h-[800px] overflow-hidden relative"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <div
-          className="flex transition-transform duration-1000 ease-in-out"
-          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-        >
-          {slides.map((slide, index) => (
-            <div key={index} className="min-w-full h-[400px] sm:h-[600px] lg:h-[800px] relative">
-              <Image
-                src={slide.url}
-                alt={`Slide ${index + 1}`}
-                fill
-                className="rounded-lg object-cover"
-              />
-            </div>
-          ))}
-        </div>
-        <div className="absolute bottom-0 w-full h-8 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+  <div
+  className="w-full h-[250px] sm:h-[350px] lg:h-[550px] overflow-hidden relative rounded-2xl" // Slightly increased height and maintained rounded corners
+  onMouseEnter={() => setIsHovered(true)}
+  onMouseLeave={() => setIsHovered(false)}
+>
+  <div
+    className="flex transition-transform duration-1000 ease-in-out"
+    style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+  >
+    {slides.map((slide, index) => (
+      <div key={index} className="min-w-full h-[250px] sm:h-[350px] lg:h-[550px] relative">
+        <Image
+          src={slide.url}
+          alt={`Slide ${index + 1}`}
+          fill
+          className=" object-cover" // Rounded corners on the image
+        />
       </div>
+    ))}
+  </div>
+</div>
+
+
 
       <div className="bg-black min-h-screen flex flex-col items-center text-white">
-        <div className="w-full max-w-lg mb-[-70px]">
+        <div className="w-full max-w-lg mb-[-30px]  "> {/* Reduced margin here */}
           <Image
             src="/custom.png"
             alt="Decorative Upper Image"
@@ -89,37 +90,36 @@ const Carousel = () => {
             className="w-full"
           />
         </div>
+        <div className="flex flex-col lg:flex-row justify-center items-center p-5 w-full max-w-6xl"> {/* Increased max width */}
+  <div className="relative w-full lg:w-7/12 h-48 sm:h-64 lg:h-80"> {/* Slightly increased width for the iframe */}
+    <iframe
+      className="absolute top-0 left-0 w-full h-full rounded-lg"
+      src="https://www.youtube.com/embed/UDllFC9d4Xc?si=VKVQ78YF2pqKVbzW"
+      title="YouTube video player"
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+    ></iframe>
+  </div>
 
-        <div className="flex flex-col lg:flex-row justify-center items-center p-5 w-full max-w-5xl">
-          <div className="relative w-full lg:w-1/2 h-48 sm:h-64 lg:h-80">
-            <iframe
-              className="absolute top-0 left-0 w-full h-full rounded-lg"
-              src="https://www.youtube.com/embed/UDllFC9d4Xc?si=VKVQ78YF2pqKVbzW"
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
-          </div>
+  <div className="mt-5 lg:mt-0 lg:ml-5 w-full lg:w-5/12 text-center lg:text-left"> {/* Adjusted width for the text */}
+    <h2 className="text-2xl font-bold mb-2">About Hare Krishna Movement</h2>
+    <h3 className="text-xl font-bold mb-2">Jodhpur</h3>
+    <p className="mb-4">
+      The Hare Krishna Cultural Centre, also known as the &quot;Hare Krishna Movement Jodhpur&quot; or the &quot;Hare Krishna Mandir,&quot; desires to advance society through the authentic traditional practices of spiritual culture.
+    </p>
+    <p className="mb-4">
+      Srila Prabhupada, the Founder-Acharya of the International Society for Krishna Consciousness, stated, &quot;Unless you change the society, how can you make social welfare?&quot;
+    </p>
 
-          <div className="mt-5 lg:mt-0 lg:ml-5 w-full lg:w-1/2 text-center lg:text-left">
-            <h2 className="text-2xl font-bold mb-2">About Hare Krishna Movement</h2>
-            <h3 className="text-xl font-bold mb-2">Jodhpur</h3>
-            <p className="mb-4">
-              The Hare Krishna Cultural Centre, also known as the &quot;Hare Krishna Movement Jodhpur&quot; or the &quot;Hare Krishna Mandir,&quot; desires to advance society through the authentic traditional practices of spiritual culture.
-            </p>
-            <p className="mb-4">
-              Srila Prabhupada, the Founder-Acharya of the International Society for Krishna Consciousness, stated, &quot;Unless you change the society, how can you make social welfare?&quot;
-            </p>
+    <Link href="/about" passHref>
+      <i className="fas fa-arrow-right ml-2"></i>
+    </Link>
+  </div>
+</div>
 
-            <Link href="/about" passHref>
-              
-                <i className="fas fa-arrow-right ml-2"></i>   
-            </Link>
-          </div>
-        </div>
 
-        <div className="w-full max-w-lg transform rotate-180 mt-[-70px]">
+        <div className="w-full max-w-lg transform rotate-180 mt-[-30px] mb-[-70px]"> {/* Reduced margin here */}
           <Image
             src="/custom.png"
             alt="Decorative Lower Image"

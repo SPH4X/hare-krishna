@@ -50,101 +50,103 @@ const Activities = () => {
   return (
     <div className="bg-[#0d0d0d] text-white min-h-screen">
       <div className="container mx-auto px-4 py-16">
-        {/* Temple Festivals Section */}
-        <h1 className="text-5xl font-extrabold tracking-tight mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-black">
-          1. Activities
-        </h1>
-        <p className="text-xl leading-relaxed mb-12 text-gray-300">
-          Memories of the variegated cultural activities, including traditional
-          dance, drama, and musical kirtans and bhajans, performed at the Hare
-          Krishna Mandir.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {festivalImages.map((image, index) => (
-            <div
-              key={index}
-              className="relative group overflow-hidden rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-            >
-              <Image
-                alt={image.alt}
-                className="w-full h-auto object-cover transform transition-transform duration-500 group-hover:scale-110"
-                src={image.src} // Blank source
-                width={640}
-                height={480}
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-70 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div className="absolute inset-0 flex items-end p-4">
-                <p className="text-white font-semibold text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  {image.alt}
-                </p>
+        <div className="px-6"> {/* Added padding on left and right */}
+          {/* Temple Festivals Section */}
+          <h1 className="text-5xl font-extrabold tracking-tight mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-black">
+            1. Activities
+          </h1>
+          <p className="text-xl leading-relaxed mb-12 text-gray-300">
+            Memories of the variegated cultural activities, including traditional
+            dance, drama, and musical kirtans and bhajans, performed at the Hare
+            Krishna Mandir.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {festivalImages.map((image, index) => (
+              <div
+                key={index}
+                className="relative group overflow-hidden rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+              >
+                <Image
+                  alt={image.alt}
+                  className="w-full h-auto object-cover transform transition-transform duration-500 group-hover:scale-110"
+                  src={image.src} // Blank source
+                  width={640}
+                  height={480}
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-70 group-hover:opacity-50 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 flex items-end p-4">
+                  <p className="text-white font-semibold text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {image.alt}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        {/* Cultural Events Section */}
-        <h2 className="text-5xl font-extrabold tracking-tight mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-black mt-16">
-          2. Events
-        </h2>
-        <p className="text-xl leading-relaxed mb-12 text-gray-300">
-          Memories of the variegated cultural activities, including traditional
-          dance, drama, and musical kirtans and bhajans, performed at the Hare
-          Krishna Mandir.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {culturalImages.map((image, index) => (
-            <div
-              key={index}
-              className="relative group overflow-hidden rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-            >
-              <Image
-                alt={image.alt}
-                className="w-full h-auto object-cover transform transition-transform duration-500 group-hover:scale-110"
-                src={image.src} // Blank source
-                width={640}
-                height={480}
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-70 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div className="absolute inset-0 flex items-end p-4">
-                <p className="text-white font-semibold text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  {image.alt}
-                </p>
+          {/* Cultural Events Section */}
+          <h2 className="text-5xl font-extrabold tracking-tight mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-black mt-16">
+            2. Events
+          </h2>
+          <p className="text-xl leading-relaxed mb-12 text-gray-300">
+            Memories of the variegated cultural activities, including traditional
+            dance, drama, and musical kirtans and bhajans, performed at the Hare
+            Krishna Mandir.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {culturalImages.map((image, index) => (
+              <div
+                key={index}
+                className="relative group overflow-hidden rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+              >
+                <Image
+                  alt={image.alt}
+                  className="w-full h-auto object-cover transform transition-transform duration-500 group-hover:scale-110"
+                  src={image.src} // Blank source
+                  width={640}
+                  height={480}
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-70 group-hover:opacity-50 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 flex items-end p-4">
+                  <p className="text-white font-semibold text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {image.alt}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        {/* Special Events Section */}
-        <h2 className="text-5xl font-extrabold tracking-tight mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-black mt-16">
-          3. Our Services
-        </h2>
-        <p className="text-xl leading-relaxed mb-12 text-gray-300">
-          Hare Krishna Mandir, Jodhpur offers you spiritual guidance, prasadam
-          booking, and kirtan instrument classes like mridanga and kartal. Join
-          us for worship, meditation, and educational programs; participate in
-          festive celebrations and enhance your spiritual journey.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {specialEventImages.map((image, index) => (
-            <div
-              key={index}
-              className="relative group overflow-hidden rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-            >
-              <Image
-                alt={image.alt}
-                className="w-full h-auto object-cover transform transition-transform duration-500 group-hover:scale-110"
-                src={image.src} // Blank source
-                width={640}
-                height={480}
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-70 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div className="absolute inset-0 flex items-end p-4">
-                <p className="text-white font-semibold text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  {image.alt}
-                </p>
+          {/* Special Events Section */}
+          <h2 className="text-5xl font-extrabold tracking-tight mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-black mt-16">
+            3. Our Services
+          </h2>
+          <p className="text-xl leading-relaxed mb-12 text-gray-300">
+            Hare Krishna Mandir, Jodhpur offers you spiritual guidance, prasadam
+            booking, and kirtan instrument classes like mridanga and kartal. Join
+            us for worship, meditation, and educational programs; participate in
+            festive celebrations and enhance your spiritual journey.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {specialEventImages.map((image, index) => (
+              <div
+                key={index}
+                className="relative group overflow-hidden rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+              >
+                <Image
+                  alt={image.alt}
+                  className="w-full h-auto object-cover transform transition-transform duration-500 group-hover:scale-110"
+                  src={image.src} // Blank source
+                  width={640}
+                  height={480}
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-70 group-hover:opacity-50 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 flex items-end p-4">
+                  <p className="text-white font-semibold text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {image.alt}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </div>
