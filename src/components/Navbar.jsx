@@ -49,8 +49,22 @@ export default function Navbar() {
           </Link>
         </div>
         {/* Status indicator */}
-        <div className={`flex items-center px-3 py-1 rounded-full text-white ${statusColor}`}>
-          {status}
+        <div className="flex items-center space-x-4">
+          <div className={`flex items-center px-3 py-1 rounded-full text-white ${statusColor}`}>
+            {status}
+          </div>
+          {/* Social Media Icons */}
+          <div className="flex items-center space-x-3">
+            <Link href="https://www.youtube.com/@HareKrishnaJodhpur" target="_blank" rel="noopener noreferrer" className="hover:text-red-400 transition-colors">
+              <i className="fab fa-youtube text-xl"></i>
+            </Link>
+            <Link href="https://instagram.com/harekrishnajodhpur" target="_blank" rel="noopener noreferrer" className="hover:text-pink-400 transition-colors">
+              <i className="fab fa-instagram text-xl"></i>
+            </Link>
+            <Link href="https://www.facebook.com/hkmjodhpur/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">
+              <i className="fab fa-facebook text-xl"></i>
+            </Link>
+          </div>
         </div>
       </div>
 

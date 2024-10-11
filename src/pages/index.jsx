@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import SwiperCore, { Navigation, Pagination } from "swiper";
-import Link from "next/link"; // For internal navigation
+import Link from "next/link";
 
 SwiperCore.use([Navigation, Pagination]);
 
@@ -42,45 +42,80 @@ const Carousel = () => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const intervalRef = useRef(null);
 
+  // Auto-slide functionality
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (!isHovered) {
+    const autoSlide = () => {
+      if (!isHovered && !isDragging) {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
       }
-    }, 3000);
+    };
 
-    return () => clearInterval(interval);
-  }, [isHovered, slides.length]);
+    intervalRef.current = setInterval(autoSlide, 3000);
+
+    return () => clearInterval(intervalRef.current);
+  }, [isHovered, isDragging, slides.length]);
+
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    setStartX(e.pageX);
+    clearInterval(intervalRef.current); // Stop auto-slide while dragging
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    const walk = e.pageX - startX; // Distance moved
+    if (walk > 100 && currentIndex > 0) {
+      setCurrentIndex((prevIndex) => prevIndex - 1);
+      setStartX(e.pageX);
+    } else if (walk < -100 && currentIndex < slides.length - 1) {
+      setCurrentIndex((prevIndex) => prevIndex + 1);
+      setStartX(e.pageX);
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+    intervalRef.current = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
+    }, 3000); // Resume auto-slide after mouse interaction
+  };
 
   return (
     <>
-  <div
-  className="w-full h-[250px] sm:h-[350px] lg:h-[550px] overflow-hidden relative rounded-2xl" // Slightly increased height and maintained rounded corners
-  onMouseEnter={() => setIsHovered(true)}
-  onMouseLeave={() => setIsHovered(false)}
->
-  <div
-    className="flex transition-transform duration-1000 ease-in-out"
-    style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-  >
-    {slides.map((slide, index) => (
-      <div key={index} className="min-w-full h-[250px] sm:h-[350px] lg:h-[550px] relative">
-        <Image
-          src={slide.url}
-          alt={`Slide ${index + 1}`}
-          fill
-          className=" object-cover" // Rounded corners on the image
-        />
+      {/* Carousel Section */}
+      <div
+        className="w-full h-[300px] sm:h-[400px] lg:h-[600px] overflow-hidden relative rounded-2xl cursor-grab" // Increased height
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseUp}
+      >
+        <div
+          className="flex transition-transform duration-1000 ease-in-out"
+          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+        >
+          {slides.map((slide, index) => (
+            <div key={index} className="min-w-full h-[300px] sm:h-[400px] lg:h-[600px] relative">
+              <Image
+                src={slide.url}
+                alt={`Slide ${index + 1}`}
+                fill
+                className=" object-cover"
+              />
+            </div>
+          ))}
+        </div>
       </div>
-    ))}
-  </div>
-</div>
 
-
-
+      {/* About Section */}
       <div className="bg-black min-h-screen flex flex-col items-center text-white">
-        <div className="w-full max-w-lg mb-[-30px]  "> {/* Reduced margin here */}
+        <div className="w-full max-w-lg mb-[-30px]">
           <Image
             src="/custom.png"
             alt="Decorative Upper Image"
@@ -90,36 +125,35 @@ const Carousel = () => {
             className="w-full"
           />
         </div>
-        <div className="flex flex-col lg:flex-row justify-center items-center p-5 w-full max-w-6xl"> {/* Increased max width */}
-  <div className="relative w-full lg:w-7/12 h-48 sm:h-64 lg:h-80"> {/* Slightly increased width for the iframe */}
-    <iframe
-      className="absolute top-0 left-0 w-full h-full rounded-lg"
-      src="https://www.youtube.com/embed/UDllFC9d4Xc?si=VKVQ78YF2pqKVbzW"
-      title="YouTube video player"
-      frameBorder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowFullScreen
-    ></iframe>
-  </div>
+        <div className="flex flex-col lg:flex-row justify-center items-center p-5 w-9/12">
+          <div className="relative w-full lg:w-7/12 h-48 sm:h-64 lg:h-80">
+            <iframe
+              className="absolute top-0 left-0 w-full h-full rounded-lg"
+              src="https://www.youtube.com/embed/UDllFC9d4Xc?si=VKVQ78YF2pqKVbzW"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
 
-  <div className="mt-5 lg:mt-0 lg:ml-5 w-full lg:w-5/12 text-center lg:text-left"> {/* Adjusted width for the text */}
-    <h2 className="text-2xl font-bold mb-2">About Hare Krishna Movement</h2>
-    <h3 className="text-xl font-bold mb-2">Jodhpur</h3>
-    <p className="mb-4">
-      The Hare Krishna Cultural Centre, also known as the &quot;Hare Krishna Movement Jodhpur&quot; or the &quot;Hare Krishna Mandir,&quot; desires to advance society through the authentic traditional practices of spiritual culture.
-    </p>
-    <p className="mb-4">
-      Srila Prabhupada, the Founder-Acharya of the International Society for Krishna Consciousness, stated, &quot;Unless you change the society, how can you make social welfare?&quot;
-    </p>
+          <div className="mt-5 lg:mt-0 lg:ml-5 w-full lg:w-5/12 text-center lg:text-left">
+            <h2 className="text-2xl font-bold mb-2">About Hare Krishna Movement</h2>
+            <h3 className="text-xl font-bold mb-2">Jodhpur</h3>
+            <p className="mb-4">
+              The Hare Krishna Cultural Centre, also known as the &quot;Hare Krishna Movement Jodhpur&quot; or the &quot;Hare Krishna Mandir,&quot; desires to advance society through the authentic traditional practices of spiritual culture.
+            </p>
+            <p className="mb-4">
+              Srila Prabhupada, the Founder-Acharya of the International Society for Krishna Consciousness, stated, &quot;Unless you change the society, how can you make social welfare?&quot;
+            </p>
 
-    <Link href="/about" passHref>
-      <i className="fas fa-arrow-right ml-2"></i>
-    </Link>
-  </div>
-</div>
+            <Link href="/about" passHref>
+              <i className="fas fa-arrow-right ml-2"></i>
+            </Link>
+          </div>
+        </div>
 
-
-        <div className="w-full max-w-lg transform rotate-180 mt-[-30px] mb-[-70px]"> {/* Reduced margin here */}
+        <div className="w-full max-w-lg transform rotate-180 mt-[-30px] mb-[-70px]">
           <Image
             src="/custom.png"
             alt="Decorative Lower Image"
@@ -131,13 +165,17 @@ const Carousel = () => {
         </div>
       </div>
 
+      {/* Donation Section */}
       <div className="bg-black text-white font-roboto py-12 px-12">
         <div className="container mx-auto max-w-6xl">
           <div className="flex justify-center items-center mb-8">
             <div className="text-center">
-              <h1 className="text-4xl font-bold text-gray-100">Support Our Cause</h1>
+              <h1 className="text-4xl font-bold text-gray-100">
+                Support Our Cause
+              </h1>
               <p className="text-lg text-gray-300">
-                Your generous contributions can make a significant impact in our community.
+                Your generous contributions can make a significant impact in our
+                community.
               </p>
             </div>
           </div>
@@ -156,7 +194,9 @@ const Carousel = () => {
                       />
                     </div>
                     <div className="p-4">
-                      <p className="text-center font-semibold text-xl">{donation.title}</p>
+                      <p className="text-center font-semibold text-xl">
+                        {donation.title}
+                      </p>
                       <button className="w-full mt-4 bg-sky-950 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300">
                         Donate
                       </button>
@@ -169,13 +209,15 @@ const Carousel = () => {
         </div>
       </div>
 
+      {/* Photos Section */}
       <div className="bg-black text-white font-roboto py-12 px-12">
         <div className="container mx-auto max-w-6xl">
           <div className="flex justify-center items-center mb-8">
             <div className="text-center">
               <h1 className="text-4xl font-bold text-gray-100">Photos</h1>
               <p className="text-lg text-gray-300">
-                View the highlights of the programs and cultural festivities celebrated by the Hare Krishna Movement Jodhpur.
+                View the highlights of the programs and cultural festivities
+                celebrated by the Hare Krishna Movement Jodhpur.
               </p>
             </div>
           </div>
@@ -199,7 +241,9 @@ const Carousel = () => {
                       />
                     </div>
                     <div className="p-4">
-                      <p className="text-center font-semibold text-xl">{photo.title}</p>
+                      <p className="text-center font-semibold text-xl">
+                        {photo.title}
+                      </p>
                     </div>
                   </div>
                 </a>
@@ -208,7 +252,7 @@ const Carousel = () => {
           </div>
         </div>
       </div>
-    </> // Close fragment here
+    </>
   );
 };
 

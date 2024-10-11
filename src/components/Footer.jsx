@@ -67,7 +67,7 @@ export default function Footer() {
 </Link>
 
                 <Link
-                  href="https://www.facebook.com/hkmjodhpura/"
+                  href="https://www.facebook.com/hkmjodhpur/"
                   target="_blank"
                   className="rounded-xl bg-white flex items-center text-blue justify-center hover:bg-primary hover:text-white duration-150 transition-all h-8 w-8"
                 >
