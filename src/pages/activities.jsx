@@ -5,7 +5,7 @@ const Activities = () => {
   const festivalImages = [
     {
       alt: "A group of dancers performing a traditional dance in colorful attire with a vibrant red background",
-      src: "", // Blank source
+      src: "/aboutTemple.png", // Blank source
     },
     {
       alt: "A group of people in white clothing holding baskets of flowers during a festival procession",
@@ -50,7 +50,7 @@ const Activities = () => {
   return (
     <div className="bg-[#0d0d0d] text-white min-h-screen">
       <div className="container mx-auto px-4 py-16">
-        <div className="px-6"> {/* Added padding on left and right */}
+        <div className="px-40"> {/* Added padding on left and right */}
           {/* Temple Festivals Section */}
           <h1 className="text-5xl font-extrabold tracking-tight mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-black">
             1. Activities

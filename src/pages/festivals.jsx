@@ -29,21 +29,21 @@ const festivals = [
     date: "11/11/2024",
     description:
       "Diwali, the festival of lights, symbolizes the victory of light over darkness...",
-    image: "", // Make sure to provide your own image
+    image: "", // Provide your own image
   },
   {
     title: "Holi",
     date: "25/03/2025",
     description:
       "Holi is a vibrant festival celebrating the arrival of spring and the victory of good over evil...",
-    image: "", // Make sure to provide your own image
+    image: "", // Provide your own image
   },
 ];
 
 const Festivals = () => {
   return (
-    <div className="bg-black text-white">
-      <div className="container mx-auto px-4 py-8">
+    <div className="bg-black text-white py-8">
+      <div className="container mx-auto px-4 md:px-8 lg:px-12">
         <h1 className="text-5xl font-bold text-center mb-4">Our Festivals</h1>
         <p className="text-center text-lg mb-8">
           Explore our Festivals & join us in the service of Lord
@@ -52,28 +52,31 @@ const Festivals = () => {
           {festivals.map((festival, index) => (
             <div
               key={index}
-              className="bg-gray-900 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="bg-gray-900 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
             >
               <div className="relative">
                 <Image
                   alt={`${festival.title} image`}
-                  className="w-full h-64 object-cover rounded-t-lg mb-4" // Maintain the height
-                  width={400} // Set a specific width
-                  height={256} // Maintain the aspect ratio
-                  src={festival.image}
+                  className="w-full h-64 object-cover rounded-t-lg mb-4"
+                  src={festival.image || "/default-image.png"} // Provide a default image if none exists
+                  layout="responsive" // Responsive layout
+                  width={400} // Maintain aspect ratio
+                  height={256} // Maintain aspect ratio
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent rounded-t-lg"></div>
                 {/* Gradient overlay */}
               </div>
-              <h2 className="text-2xl font-semibold mb-2">{festival.title}</h2>
-              <div className="flex items-center text-sky-600 mb-2">
-                <i className="fas fa-calendar-alt mr-2" />
-                <span>{festival.date}</span>
+              <div className="p-6">
+                <h2 className="text-2xl font-semibold mb-2">{festival.title}</h2>
+                <div className="flex items-center text-sky-600 mb-2">
+                  <i className="fas fa-calendar-alt mr-2" />
+                  <span>{festival.date}</span>
+                </div>
+                <p className="text-gray-300 mb-4">{festival.description}</p>
+                <button className="bg-sky-950 text-white py-2 px-4 rounded-lg hover:bg-sky-700 transition-colors duration-300">
+                  Read More
+                </button>
               </div>
-              <p className="text-gray-300 mb-4">{festival.description}</p>
-              <button className="bg-sky-950 text-white py-2 px-4 rounded-lg hover:bg-sky-700 transition-colors duration-300">
-                Read More
-              </button>
             </div>
           ))}
         </div>
